@@ -18,6 +18,7 @@ namespace XNManage.Controllers
 
         public ActionResult BarCharts()
         {
+            //test
             return View();
         }
     }

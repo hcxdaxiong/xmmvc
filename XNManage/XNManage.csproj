@@ -136,6 +136,7 @@
     <Compile Include="Common\LoginValidAttribute.cs" />
     <Compile Include="Common\Rule.cs" />
     <Compile Include="Common\StringEnum.cs" />
+    <Compile Include="Controllers\ChartsController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Repository\IPager.cs" />
     <Compile Include="Repository\IProductRepository.cs" />
@@ -282,6 +283,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\Plotly\plotly.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -302,6 +304,8 @@
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Product\CategoryList.cshtml" />
     <Content Include="Views\Product\JqgridInit.cshtml" />
+    <Content Include="Views\Charts\Index.cshtml" />
+    <Content Include="Views\Charts\BarCharts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

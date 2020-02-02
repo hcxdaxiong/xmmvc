@@ -52,7 +52,8 @@
                 {
                     name: 'myac', index: 'Actions', width: 60, fixed: true, sortable: false, resize: false, formatter: 'actions', formatoptions: {
                         keys: true,
-                        delOptions: { recreateForm: true, beforeShowForm: beforeDeleteCallback, },//改变原来的样式  msg: '您确定要删除这条记录？</span>                    }
+                        delOptions: { recreateForm: true, beforeShowForm: beforeDeleteCallback, },//改变原来的样式  msg: '您确定要删除这条记录？</span>
+                    }
                 //    name: 'act', index: 'act', width: 75, sortable: false
 
                 },
@@ -96,7 +97,8 @@
                 //    ce = "<span class='icon-ok  ui-icon'></span>";//删除
                 //    jQuery("#list2").jqGrid('setRowData', ids[i], { act: be + se + ce });
                 //}
-            },            loadComplete: function () {
+            },
+            loadComplete: function () {
                 $("#grid-table").hide();
 
                 var table = this;
@@ -148,14 +150,16 @@
             },
             {
                 //delete
-                recreateForm: true,                url: '/User/Delete', mtype: 'POST',
+                recreateForm: true,
+                url: '/User/Delete', mtype: 'POST',
                 beforeShowForm: function (e) {
                     var form = $(e[0]);
                     if (form.data('styled')) return false;
                     form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />');
                     styleDeleteForm(form);
                     form.data('styled', true); return true;
-                },                afterSubmit: function (xhr, postdata) {
+                },
+                afterSubmit: function (xhr, postdata) {
                     var consoleDlg = $("#list2");
                     var selectedRowIds =
                     $("#list2").jqGrid("getGridParam", "selarrrow");
@@ -201,7 +205,8 @@
             buttons.addClass('btn btn-sm').find('[class*="-icon"]').remove();//ui-icon, s-icon
             buttons.eq(0).addClass('btn-danger').prepend('<i class="icon-trash"></i>');
             buttons.eq(1).prepend('<i class="icon-remove"></i>');
-        }
+        }
+
         //更新分页图标
         function updatePagerIcons() {
             

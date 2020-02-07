@@ -4,14 +4,14 @@
 }
 
 <select class="form-control" onchange="selectOnchang(this)" style="width:20%">
-    <option value="lines+markers">lines+markers</option>
-    <option value="lines">lines</option>
-    <option value="markers">markers</option>
+    <option value="bar">Basic Bar Chart</option>
+    <option value="grouped">Grouped Bar Chart</option>
+    <option value="stacked">Stacked Bar Chart</option>
 </select>
 
 <div class="panel panel-info">
     <div class="panel-heading">
-        <h3 class="panel-title">scatter charts</h3>
+        <h3 class="panel-title">bar charts</h3>
     </div>
     <div class="panel-body">
         <div id="tester1"></div>
@@ -23,30 +23,65 @@
     function selectOnchang(obj) {
         var value;
         if (obj === '') {
-            value = 'lines+markers';
+            value = 'bar';
         } else {
             value = obj.options[obj.selectedIndex].value;
         }
-        var trace1 = {
-            x: [1, 2, 3, 4],
-            y: [10, 15, 13, 17],
-            mode: value,
-            type: 'scatter'
-        };
+        if (value === "bar") {
+            var data = [
+                {
+                    x: ['giraffes', 'orangutans', 'monkeys'],
+                    y: [20, 14, 23],
+                    type: 'bar'
+                }
+            ];
+            Plotly.newPlot('tester1', data);
+        } else if (value === 'grouped') {
+            var trace1 = {
+                x: ['giraffes', 'orangutans', 'monkeys'],
+                y: [20, 14, 23],
+                name: 'SF Zoo',
+                type: 'bar'
+            };
 
-        var trace2 = {
-            x: [1, 2, 3, 4],
-            y: [16, 5, 11, 9],
-            mode: value,
-            type: 'scatter'
-        };
-        var data = [trace1, trace2];
-        Plotly.newPlot('tester1', data);
+            var trace2 = {
+                x: ['giraffes', 'orangutans', 'monkeys'],
+                y: [12, 18, 29],
+                name: 'LA Zoo',
+                type: 'bar'
+            };
+
+            var data = [trace1, trace2];
+
+            var layout = { barmode: 'group' };
+
+            Plotly.newPlot('tester1', data, layout);
+        } else if (value === 'stacked') {
+            var trace1 = {
+                x: ['giraffes', 'orangutans', 'monkeys'],
+                y: [20, 14, 23],
+                name: 'SF Zoo',
+                type: 'bar'
+            };
+
+            var trace2 = {
+                x: ['giraffes', 'orangutans', 'monkeys'],
+                y: [12, 18, 29],
+                name: 'LA Zoo',
+                type: 'bar'
+            };
+
+            var data = [trace1, trace2];
+
+            var layout = { barmode: 'stack' };
+
+            Plotly.newPlot('tester1', data, layout);
+        }
     }
 
     $(function () {
         $(".page-header h1 span,#currentpart").html("图表");
-        $(".page-header h1 small span").html("Scatter");
+        $(".page-header h1 small span").html("Bar");
         $(".nav-list>li:eq(3)").addClass("active").siblings().removeClass("active");
         selectOnchang("");
     });

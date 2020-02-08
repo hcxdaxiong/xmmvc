@@ -1,0 +1,143 @@
+﻿@{
+    ViewBag.Title = "GLCharts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<select class="form-control" onchange="selectOnchang(this)" style="width:20%">
+    <option value="100000">100000 points</option>
+    <option value="1000000">1000000 points</option>
+    <option value="traces">many traces</option>
+</select>
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">bar charts</h3>
+    </div>
+    <div class="panel-body">
+        <div id="tester1"></div>
+    </div>
+</div>
+<script src="~/Scripts/Plotly/plotly.min.js"></script>
+
+
+<script>
+
+    function selectOnchang(obj) {
+        var value;
+        if (obj === '') {
+            value = '100000';
+        } else {
+            value = obj.options[obj.selectedIndex].value;
+        }
+        if (value === "100000") {
+            function gaussianRand() {
+                var rand = 0;
+                for (var i = 0; i < 6; i += 1) {
+                    rand += Math.random();
+                }
+                return (rand / 6) - 0.5;
+            }
+
+            var X = [],
+                Y = [],
+                n = 100000,
+                i;
+
+            for (i = 0; i < n; i += 1) {
+                X.push(gaussianRand());
+                Y.push(gaussianRand());
+            }
+
+            var data = [{
+                type: "scattergl",
+                mode: "markers",
+                marker: {
+                    line: {
+                        width: 1,
+                        color: '#404040'
+                    }
+                },
+                x: X,
+                y: Y
+            }]
+
+            var layout = { hovermode: "closest" }
+            Plotly.newPlot('tester1', data, layout);
+        } else if (value === '1000000') {
+            function gaussianRand() {
+                var rand = 0;
+                for (var i = 0; i < 6; i += 1) {
+                    rand += Math.random();
+                }
+                return (rand / 6) - 0.5;
+            }
+
+            var X = [],
+                Y = [],
+                n = 1000000,
+                i;
+
+            for (i = 0; i < n; i += 1) {
+                X.push(gaussianRand());
+                Y.push(gaussianRand());
+            }
+
+            var data = [{
+                type: "scattergl",
+                mode: "markers",
+                marker: {
+                    color: 'rgb(152, 0, 0)',
+                    line: {
+                        width: 1,
+                        color: 'rgb(0,0,0)'
+                    }
+                },
+                x: X,
+                y: Y
+            }]
+            var layout = { hovermode: "closest" }
+            Plotly.newPlot('tester1', data, layout);
+        } else if (value === 'traces') {
+            function gaussianRand() {
+                var rand = 0;
+                for (var i = 0; i < 6; i += 1) {
+                    rand += Math.random();
+                }
+                return (rand / 6) - 0.5;
+            }
+
+
+            var start_value = 0,
+                stop_value = 1,
+                point_num = 5000,
+                trace_num = 10;
+            var curr_value = start_value;
+            var step = (stop_value - start_value) / (point_num - 1);
+
+            var data = [];
+            for (var j = 0; j < trace_num; j++) {
+                var X = [],
+                    Y = [];
+                for (var i = 0; i < point_num; i++) {
+                    X.push(curr_value + (step * i));
+                    Y.push((gaussianRand() * 8) + (j * 5));
+                }
+                data.push({
+                    type: "scattergl",
+                    mode: "line",
+                    x: X,
+                    y: Y
+                })
+            }
+            var layout = { showlegend: false}
+            Plotly.newPlot('tester1', data = data, layout = layout)
+        }
+    }
+
+    $(function () {
+        $(".page-header h1 span,#currentpart").html("图表");
+        $(".page-header h1 small span").html("GL");
+        $(".nav-list>li:eq(3)").addClass("active").siblings().removeClass("active");
+        selectOnchang("");
+    });
+</script>

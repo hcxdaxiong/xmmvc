@@ -306,6 +306,7 @@
     <Content Include="Views\Product\JqgridInit.cshtml" />
     <Content Include="Views\Charts\Index.cshtml" />
     <Content Include="Views\Charts\BarCharts.cshtml" />
+    <Content Include="Views\Charts\GLCharts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

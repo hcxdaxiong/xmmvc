@@ -21,5 +21,11 @@ namespace XNManage.Controllers
             //test
             return View();
         }
+
+        public ActionResult GLCharts()
+        {
+            //test
+            return View();
+        }
     }
 }

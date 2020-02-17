@@ -15,13 +15,14 @@
     </div>
     <div class="panel-body">
         <div id="tester1"></div>
+        
     </div>
 </div>
 <script src="~/Scripts/Plotly/plotly.min.js"></script>
 
 
 <script>
-
+    var glselectvalue='';
     function selectOnchang(obj) {
         var value;
         if (obj === '') {
@@ -29,6 +30,7 @@
         } else {
             value = obj.options[obj.selectedIndex].value;
         }
+        glselectvalue = obj;
         if (value === "100000") {
             function gaussianRand() {
                 var rand = 0;
@@ -138,6 +140,9 @@
         $(".page-header h1 span,#currentpart").html("图表");
         $(".page-header h1 small span").html("GL");
         $(".nav-list>li:eq(3)").addClass("active").siblings().removeClass("active");
-        selectOnchang("");
+        selectOnchang('');
+        $(window).resize(function () {
+            selectOnchang(glselectvalue);
+        });
     });
 </script>

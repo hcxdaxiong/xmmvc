@@ -83,6 +83,9 @@
         $(".page-header h1 span,#currentpart").html("图表");
         $(".page-header h1 small span").html("Bar");
         $(".nav-list>li:eq(3)").addClass("active").siblings().removeClass("active");
-        selectOnchang("");
+        selectOnchang('');
+        $(window).resize(function () {
+            selectOnchang(glselectvalue);
+        });
     });
 </script>
